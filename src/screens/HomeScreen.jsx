@@ -11,10 +11,13 @@ import Categories from '../components/Categories';
 import { useEffect, useState } from 'react';
 import AttractionCard from '../components/AttractionCard';
 import attractionsData from '../data/attractions.json';
+import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [attractions, setAttractions] = useState([]);
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     const filteredData =
@@ -72,6 +75,9 @@ const HomeScreen = () => {
             key={attraction.id}
             title={attraction.name}
             subTitle={attraction.city}
+            navigateToAttraction={() =>
+              navigation.navigate('Attraction', { attraction })
+            }
             classNames={index % 2 === 0 && 'mr-3'}
             imageSrc={attraction.images?.length ? attraction.images[0] : null}
           />

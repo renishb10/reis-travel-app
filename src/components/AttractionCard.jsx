@@ -1,7 +1,20 @@
 import { EvilIcons } from '@expo/vector-icons';
-import { View, Text, Image, Dimensions, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 
-const AttractionCard = ({ imageSrc, title, subTitle, classNames }) => {
+const AttractionCard = ({
+  imageSrc,
+  title,
+  subTitle,
+  navigateToAttraction,
+  classNames,
+}) => {
   const { width } = Dimensions.get('window');
   const styles = StyleSheet.create({
     image: {
@@ -12,8 +25,9 @@ const AttractionCard = ({ imageSrc, title, subTitle, classNames }) => {
   });
 
   return (
-    <View
+    <TouchableOpacity
       className={`p-1 border-2 border-slate-200 rounded-[15px] mb-3 ${classNames}`}
+      onPress={navigateToAttraction}
     >
       <Image source={{ uri: imageSrc }} style={styles.image} />
       <Text className="text-[12px] font-medium ml-1 mt-2">{title}</Text>
@@ -23,7 +37,7 @@ const AttractionCard = ({ imageSrc, title, subTitle, classNames }) => {
           {subTitle}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
