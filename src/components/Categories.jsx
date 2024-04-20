@@ -5,13 +5,13 @@ const Categories = ({ categories, selectedCategory, selectCategory }) => {
     <FlatList
       horizontal
       showsHorizontalScrollIndicator={false}
-      className="-mr-[32px]"
+      className="-mr-[64px] mb-4"
       data={categories}
-      renderItem={({ item }) => (
+      renderItem={({ item, index }) => (
         <TouchableOpacity
           className={`mr-6 ${
             selectedCategory === item && 'border-b-2 border-violet-800'
-          }`}
+          } ${index === 0 && 'ml-2'}`}
           onPress={() => selectCategory(item)}
         >
           <Text
